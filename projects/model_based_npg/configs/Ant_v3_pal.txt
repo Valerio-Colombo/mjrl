@@ -2,7 +2,7 @@
 
 # general inputs
 
-'env_name'      :   'Hopper-v3',
+'env_name'      :   'Ant-v3',
 'act_repeat'    :   2,
 'seed'          :   123,
 'debug_mode'    :   False,
@@ -14,7 +14,7 @@
 'device'        :   'cuda',
 'learn_reward'  :   True,
 'exp_notes'     :   'PAL parameter settings -- few NPG steps (conservative policy learning) and small buffer size (aggressive model learning)',
-'reward_file'   :   'utils/reward_functions/gym_hopper.py',
+'reward_file'   :   'utils/reward_functions/gym_ant.py',
 
 # dynamics learning
 

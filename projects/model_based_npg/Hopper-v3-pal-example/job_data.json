@@ -1,0 +1,50 @@
+{
+    "env_name": "Hopper-v3",
+    "act_repeat": 2,
+    "seed": 123,
+    "debug_mode": false,
+    "num_iter": 30,
+    "iter_samples": 1000,
+    "eval_rollouts": 5,
+    "num_models": 4,
+    "save_freq": 1,
+    "device": "cuda",
+    "learn_reward": true,
+    "exp_notes": "PAL parameter settings -- few NPG steps (conservative policy learning) and small buffer size (aggressive model learning)",
+    "reward_file": "utils/reward_functions/gym_hopper.py",
+    "hidden_size": [
+        512,
+        512
+    ],
+    "activation": "relu",
+    "fit_lr": 0.001,
+    "fit_wd": 0.0,
+    "buffer_size": 10000.0,
+    "fit_mb_size": 200,
+    "fit_epochs": 25,
+    "refresh_fit": false,
+    "max_steps": 10000.0,
+    "init_log_std": 0.0,
+    "min_log_std": -2.5,
+    "init_samples": 4000,
+    "init_policy": null,
+    "policy_size": [
+        64,
+        64
+    ],
+    "inner_steps": 5,
+    "step_size": 0.05,
+    "gamma": 0.999,
+    "gae_lambda": 0.97,
+    "update_paths": 50,
+    "start_state": "init",
+    "horizon": 500,
+    "npg_hp": {
+        "FIM_invert_args": {
+            "iters": 25,
+            "damping": 0.001
+        }
+    },
+    "hvp_frac": 1.0,
+    "num_cpu": 1
+}

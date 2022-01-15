@@ -2,11 +2,11 @@
 
 # general inputs
 
-'env_name'      :   'Hopper-v3',
-'act_repeat'    :   2,
-'seed'          :   123,
+'env_name'      :   'HalfCheetah-v3',
+'act_repeat'    :   1,
+'seed'          :   128,
 'debug_mode'    :   False,
-'num_iter'      :   30,
+'num_iter'      :   60,
 'iter_samples'  :   1000,
 'eval_rollouts' :   5,
 'num_models'    :   4,
@@ -14,17 +14,17 @@
 'device'        :   'cuda',
 'learn_reward'  :   True,
 'exp_notes'     :   'PAL parameter settings -- few NPG steps (conservative policy learning) and small buffer size (aggressive model learning)',
-'reward_file'   :   'utils/reward_functions/gym_hopper.py',
+'reward_file'   :   'utils/reward_functions/gym_half_cheetah.py',
 
 # dynamics learning
 
-'hidden_size'   :   (512, 512),
+'hidden_size'   :   (512,512),
 'activation'    :   'relu',
 'fit_lr'        :   1e-3,
 'fit_wd'        :   0.0,
 'buffer_size'   :   1e4,
 'fit_mb_size'   :   200,
-'fit_epochs'    :   25,
+'fit_epochs'    :   100,
 'refresh_fit'   :   False,
 'max_steps'     :   1e4,
 
@@ -38,10 +38,10 @@
 
 # NPG params
 
-'policy_size'   :   (64, 64),
+'policy_size'   :   (128, 128),
 'inner_steps'   :   5,
 'step_size'     :   0.05,
-'gamma'         :   0.999,
+'gamma'         :   0.995,
 'gae_lambda'    :   0.97,
 'update_paths'  :   50,
 'start_state'   :   'init',

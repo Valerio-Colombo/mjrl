@@ -1,7 +1,7 @@
 import gym
 import mjrl.envs
-import trajopt.envs
-import mj_envs
+# import trajopt.envs
+# import mj_envs
 import click
 import os
 import gym
@@ -10,7 +10,7 @@ import pickle
 import torch
 from mjrl.utils.gym_env import GymEnv
 from mjrl.policies.gaussian_mlp import MLP
-import trajopt.envs
+# import trajopt.envs
 
 DESC = '''
 Helper script to visualize policy (in mjrl format).\n

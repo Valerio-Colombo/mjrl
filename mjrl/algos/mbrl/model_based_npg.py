@@ -15,6 +15,7 @@ import mjrl.samplers.core as trajectory_sampler
 import mjrl.utils.process_samples as process_samples
 from mjrl.utils.logger import DataLog
 from mjrl.algos.mbrl.sampling import policy_rollout
+#from projects.model_based_npg.utils.reward_functions.gym_hopper import reward_function_o
 
 # Import NPG
 from mjrl.algos.npg_cg import NPG
@@ -115,10 +116,12 @@ class ModelBasedNPG(NPG):
             # use learned reward function if available
             if model.learn_reward:
                 model.compute_path_rewards(rollouts)
+                # rollouts = reward_function(rollouts)
+                # rollouts["rewards"] = rollouts["rewards"] * env.act_repeat
             else:
-               rollouts = reward_function(rollouts)
-               # scale by action repeat if necessary
-               rollouts["rewards"] = rollouts["rewards"] * env.act_repeat
+                rollouts = reward_function(rollouts)
+                # scale by action repeat if necessary
+                rollouts["rewards"] = rollouts["rewards"] * env.act_repeat
             num_traj, horizon, state_dim = rollouts['observations'].shape
             for i in range(num_traj):
                 path = dict()

@@ -102,7 +102,7 @@ if 'reward_file' in job_data.keys():
     filename = splits[-1].split(".")[0]
     sys.path.append(dirpath)
     # import ipdb; ipdb.set_trace()
-    exec("from "+filename+" import *")
+    exec("from "+filename+" import *")  # imports reward function from gym_*
 if 'reward_function' not in globals():
     reward_function = getattr(e.env.env, "compute_path_rewards", None)
     job_data['learn_reward'] = False if reward_function is not None else True
@@ -123,6 +123,8 @@ agent = ModelBasedNPG(learned_model=models, env=e, policy=policy, baseline=basel
                       reward_function=reward_function, termination_function=termination_function,
                       **job_data['npg_hp'])
 
+eval_score_arr = np.zeros(job_data['num_iter'])
+rollout_score_arr = np.zeros(job_data['num_iter'])
 paths = []
 init_states_buffer = []
 best_perf = -1e8
@@ -216,6 +218,7 @@ for outer_iter in range(job_data['num_iter']):
             init_states_2 = list(s[buffer_rand_idx])
             init_states = init_states_1 + init_states_2
 
+        #from projects.model_based_npg.utils.reward_functions.gym_hopper import reward_function_o
         agent.train_step(N=len(init_states), init_states=init_states, horizon=job_data['horizon'])
         print_data = sorted(filter(lambda v: np.asarray(v[1]).size == 1,
                                    agent.logger.get_current_log().items()))
@@ -232,6 +235,9 @@ for outer_iter in range(job_data['num_iter']):
                                      real_step=True, num_episodes=job_data['eval_rollouts'], visualize=False)
         eval_score = np.mean([np.sum(p['rewards']) for p in eval_paths])
         logger.log_kv('eval_score', eval_score)
+        eval_score_arr[outer_iter] = eval_score
+        filename_path = OUT_DIR + "/logs" + "/eval_score" + str(outer_iter)
+        np.save(file=filename_path, arr=eval_score_arr)
         try:
             eval_metric = e.env.env.evaluate_success(eval_paths)
             logger.log_kv('eval_metric', eval_metric)
