@@ -4,7 +4,7 @@
 
 'env_name'      :   'HalfCheetah-v3',
 'act_repeat'    :   1,
-'seed'          :   128,
+'seed'          :   122,
 'debug_mode'    :   False,
 'num_iter'      :   60,
 'iter_samples'  :   1000,

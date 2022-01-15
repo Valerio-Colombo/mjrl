@@ -1,7 +1,7 @@
 {
     "env_name": "HalfCheetah-v3",
     "act_repeat": 1,
-    "seed": 123,
+    "seed": 122,
     "debug_mode": false,
     "num_iter": 60,
     "iter_samples": 1000,

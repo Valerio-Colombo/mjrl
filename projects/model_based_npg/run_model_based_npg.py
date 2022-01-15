@@ -154,6 +154,10 @@ for outer_iter in range(job_data['num_iter']):
     rollout_score = np.mean([np.sum(p['rewards']) for p in iter_paths])
     num_samples = np.sum([p['rewards'].shape[0] for p in iter_paths])
 
+    rollout_score_arr[outer_iter] = rollout_score
+    filename_path_r = OUT_DIR + "/logs" + "/rollout_score" + str(outer_iter)
+    np.save(file=filename_path_r, arr=rollout_score_arr)
+
     logger.log_kv('fit_epochs', job_data['fit_epochs'])
     logger.log_kv('rollout_score', rollout_score)
     logger.log_kv('iter_samples', num_samples)
